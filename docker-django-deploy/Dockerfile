@@ -2,15 +2,15 @@ FROM ubuntu:16.04
 
 MAINTAINER Dockerfiles
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y git python python-dev python-setuptools python-pip nginx supervisor sqlite3 redis-server && pip install -U pip setuptools
+RUN apt-get update && apt-get upgrade -y && apt-get install -y git python python-dev python-setuptools python-pip nginx supervisor sqlite3 && pip install -U pip setuptools
 
 
-# --- Application dependent packages ---
+# --- <Application dependent packages> ---
 
-RUN apt-get install -y python3 python3-numpy python-tk
+RUN apt-get install -y python3 python3-numpy python-tk redis-server
 RUN pip install celery
 
-# --- END ---
+# --- </Application dependent packages> ---
 
 RUN rm -rf /var/lib/apt/lists/*
 RUN pip install uwsgi
