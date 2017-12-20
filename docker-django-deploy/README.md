@@ -17,3 +17,19 @@
 7) run: "sudo docker build -t webapp ."
 
 8) run: "sudo docker -d -p 8000:80 webapp" to run docker and map the local port 8000 to it.
+
+
+NB: Remember to create a local settings with this content:
+
+from settings import *
+
+ALLOWED_HOSTS = ['*']
+MEDIA_ROOT = '/home/docker/persistent/media/'
+STATIC_ROOT = '/home/docker/volatile/static/'
+
+importing this file in settings.py with this code:
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
